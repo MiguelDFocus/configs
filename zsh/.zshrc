@@ -12,6 +12,7 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 # Path to nvim
 export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -114,6 +115,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ls="colorls"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
