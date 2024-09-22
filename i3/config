@@ -1,28 +1,31 @@
 # Set super as mod key
 set $mod Mod4
 
+# Create variables for the monitors
+set $top_monitor "DisplayPort-1"
+set $bottom_monitor "DisplayPort-0"
 
 # Scripts that need to run on startup
-exec_always --no-startup-id ~/.screenlayout/Vertical-monitors.sh && sleep 1
+exec_always --no-startup-id ~/.screenlayout/Vertical-monitors.sh
 
 # Wallpaper
-exec --no-startup-id feh --bg-scale ~/Desktop/dfocus/fondos/wallpaper2.jpeg
+exec --no-startup-id feh --bg-scale ~/Desktop/dfocus/fondos/astronaut.jpg
 
 # Run picom compositor
 exec_always --no-startup-id picom --backend xrender -b
 
+# Set screen saver to run after 1 hour of inactivity
+exec --no-startup-id xset s 3600
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:JetBrainsMono 10
+font pango:JetBrainsMono 12
 
-# Inner gaps for all windows: space between two adjacent windows (or split containers).
-gaps inner 8
+# Gaps between windows
+gaps inner 7
 
-# Outer gaps for all windows: space along the screen edges.
-gaps outer 3
-
-# Only enable outer gaps when there is exactly one window or split container on the workspace.
-smart_gaps inverse_outer
+# Outer gaps as negative to get rid of space between window and screen border
+gaps outer -7
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -92,6 +95,19 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+# Assign workspaces for different monitors
+workspace $ws1 output $top_monitor
+workspace $ws2 output $bottom_monitor
+workspace $ws3 output $bottom_monitor
+workspace $ws4 output $bottom_monitor
+workspace $ws5 output $bottom_monitor
+workspace $ws6 output $bottom_monitor
+workspace $ws7 output $bottom_monitor
+workspace $ws8 output $bottom_monitor
+workspace $ws9 output $bottom_monitor
+workspace $ws10 output $bottom_monitor
+
+
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -157,5 +173,8 @@ bindsym $mod+space focus mode_toggle
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+    position top
+    font pango:JetBrainsMono 11
+    padding 0 2px
+    status_command i3status
 }
